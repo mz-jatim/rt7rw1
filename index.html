@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jamaah Yasin RT 007 RW 001 - Dsn. Yosowinangun</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#f4f7fb',
+                            100: '#e7eef6',
+                            800: '#0c3e7b', // Royal blue premium dari gambar 148977.jpg
+                            900: '#07244a',
+                        },
+                        gold: {
+                            100: '#f9f5eb',
+                            400: '#dfc080',
+                            500: '#cbb279', // Sand gold premium dari gambar 148977.jpg
+                            600: '#b0965a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        arabic: ['Amiri', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icon Pack -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .mihrab-bg {
+            background-color: #0c3e7b;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        
+        .mihrab-arch {
+            clip-path: ellipse(65% 100% at 50% 0%);
+        }
+
+        .mosque-dome-card {
+            border-radius: 40px 40px 16px 16px;
+        }
+
+        /* Reading modes */
+        .mode-sepia {
+            background-color: #f4ecd8 !important;
+            color: #433422 !important;
+        }
+        .mode-sepia .card-read {
+            background-color: #faf6eb !important;
+            border-color: #e6d3af !important;
+        }
+
+        .mode-dark {
+            background-color: #121824 !important;
+            color: #e2e8f0 !important;
+        }
+        .mode-dark .card-read {
+            background-color: #1e293b !important;
+            border-color: #334155 !important;
+        }
+
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen pb-28 md:pb-32 flex flex-col justify-between transition-colors duration-300">
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- LOADING OVERLAY -->
+    <div id="loading-overlay" class="fixed inset-0 bg-navy-900/90 z-[9999] flex flex-col items-center justify-center text-white space-y-4 transition-all duration-500">
+        <div class="relative w-20 h-20 flex items-center justify-center">
+            <div class="absolute inset-0 border-4 border-gold-500/20 rounded-full"></div>
+            <div class="absolute inset-0 border-4 border-t-gold-500 rounded-full animate-spin"></div>
+            <i class="fa-solid fa-mosque text-gold-400 text-2xl"></i>
+        </div>
+        <p class="font-serif text-lg font-bold tracking-wide" id="loading-text">Menghubungkan ke Google Sheets...</p>
+    </div>
+
+    <!-- HEADER DESAIN PREMIUM -->
+    <header class="mihrab-bg text-white relative pt-12 pb-24 px-4 overflow-hidden border-b-4 border-gold-500 shadow-xl">
+        <div class="absolute top-4 left-6 w-8 h-8 border border-gold-400/20 rounded-full flex items-center justify-center text-gold-400/20 animate-spin text-xs">🟐</div>
+        <div class="absolute top-24 right-12 w-12 h-12 border border-gold-400/20 rounded-full flex items-center justify-center text-gold-400/20 text-md">🟐</div>
+        <div class="absolute inset-x-0 bottom-0 bg-navy-900/50 h-2/3 mihrab-arch backdrop-blur-sm pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto relative z-10 text-center">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-white/5 border border-gold-400/40 rounded-full mb-4 shadow-inner relative">
+                <div class="absolute inset-2 border border-gold-500/30 rotate-45"></div>
+                <div class="absolute inset-2 border border-gold-500/30"></div>
+                <i class="fa-solid fa-star text-gold-400 text-xl relative z-10"></i>
+            </div>
+            
+            <p class="text-xs font-bold tracking-[0.25em] text-gold-400 uppercase mb-1">Paguyuban Warga Mandiri</p>
+            <h1 class="font-serif text-3xl md:text-5xl font-bold tracking-wide leading-tight">JAMAAH YASIN RT 007 RW 001</h1>
+            <p class="text-sm md:text-base text-navy-100 font-light mt-1">Dusun Yosowinangun, Desa Jajag, Kecamatan Gambiran</p>
+
+            <div class="flex flex-wrap justify-center items-center gap-3 mt-6">
+                <span class="bg-navy-900/80 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider border border-gold-500/30 text-gold-400 flex items-center gap-1.5">
+                    <i class="fa-solid fa-moon"></i> Kamis Pon / Pon-an Malam Jumat
+                </span>
+                <span id="header-date" class="bg-white/10 px-4 py-1.5 rounded-full text-xs font-medium border border-white/10 text-slate-200 flex items-center gap-1.5">
+                    <i class="fa-regular fa-calendar"></i> Kamis, 28 Mei 2026
+                </span>
+                <span class="bg-white/10 px-4 py-1.5 rounded-full text-xs font-medium border border-white/10 text-slate-200 flex items-center gap-1.5">
+                    <i class="fa-solid fa-users"></i> <span id="header-member-count">20</span> Warga Aktif
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- VIEWPORT UTAMA (Tempat Halaman Modular Di-Render Secara Dinamis) -->
+    <main id="app-viewport" class="max-w-6xl mx-auto w-full px-4 -mt-12 relative z-20 flex-grow">
+        <!-- Konten Halaman Aktif dimasukkan di sini via Router JS -->
+    </main>
+
+    <!-- ================= TEMPLATE MODULAR (COMPONENTS) ================= -->
+
+    <!-- 1. COMPONENT: BERANDA -->
+    <template id="view-beranda">
+        <div class="space-y-6">
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-6 md:p-8 relative overflow-hidden mosque-dome-card">
+                <div class="absolute top-0 right-0 w-48 h-48 bg-navy-50 rounded-full -translate-y-12 translate-x-12 opacity-60 pointer-events-none"></div>
+                <div class="absolute bottom-0 left-0 w-36 h-36 bg-gold-100 rounded-full translate-y-12 -translate-x-12 opacity-40 pointer-events-none"></div>
+                <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                    <div class="space-y-3">
+                        <span class="inline-flex items-center gap-1.5 bg-gold-100 border border-gold-400 text-gold-600 px-3 py-1 rounded-full text-xs font-semibold">
+                            <span class="w-1.5 h-1.5 bg-gold-500 rounded-full animate-ping"></span> Pertemuan Pekanan
+                        </span>
+                        <h2 class="font-serif text-2xl md:text-3xl font-bold text-navy-800 leading-tight">Yasinan Rutin & Rembug Warga</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-6 text-sm text-slate-600">
+                            <p class="flex items-center gap-2">
+                                <i class="fa-solid fa-house-chimney text-gold-500"></i>
+                                <span>Tuan Rumah: <strong class="text-slate-800" id="agenda-host">Bapak Slamet Raharjo</strong></span>
+                            </p>
+                            <p class="flex items-center gap-2">
+                                <i class="fa-solid fa-location-dot text-gold-500"></i>
+                                <span>Alamat: <span id="agenda-address" class="text-slate-700">RT 007 (Utara Musholla Al-Ikhlas)</span></span>
+                            </p>
+                            <p class="flex items-center gap-2">
+                                <i class="fa-solid fa-clock text-gold-500"></i>
+                                <span>Waktu: <span class="text-slate-700">Ba'da Isya' (18.45 WIB)</span></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-navy-800 text-white p-5 rounded-2xl w-full lg:w-72 border border-gold-400 text-center flex flex-col justify-center">
+                        <p class="text-xs uppercase font-bold tracking-widest text-gold-400">Menghitung Mundur</p>
+                        <div class="flex justify-center gap-4 my-2 text-2xl font-bold font-serif" id="countdown-timer">
+                            <!-- JS Countdown -->
+                        </div>
+                        <p class="text-[11px] text-slate-300 border-t border-white/10 pt-2">Segera siapkan sarung & buku Yasin Anda!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KAS CARD GRID -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-md border-b-4 border-navy-800 flex items-center justify-between">
+                    <div class="space-y-1">
+                        <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Saldo Kas RT 007</span>
+                        <h3 class="text-xl font-extrabold text-navy-800" id="stats-kas-rt">Rp 0</h3>
+                    </div>
+                    <div class="w-11 h-11 rounded-xl bg-navy-50 text-navy-800 flex items-center justify-center text-lg"><i class="fa-solid fa-building-user"></i></div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-md border-b-4 border-gold-500 flex items-center justify-between">
+                    <div class="space-y-1">
+                        <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Kas Mushola Al-Ikhlas</span>
+                        <h3 class="text-xl font-extrabold text-slate-800" id="stats-kas-mushola">Rp 0</h3>
+                    </div>
+                    <div class="w-11 h-11 rounded-xl bg-gold-100 text-gold-600 flex items-center justify-center text-lg"><i class="fa-solid fa-mosque"></i></div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-md border-b-4 border-emerald-600 flex items-center justify-between">
+                    <div class="space-y-1">
+                        <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Dana Kurban Berjamaah</span>
+                        <h3 class="text-xl font-extrabold text-slate-800" id="stats-kas-kurban">Rp 0</h3>
+                    </div>
+                    <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg"><i class="fa-solid fa-cow"></i></div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 lg:col-span-2 space-y-4">
+                    <div class="flex items-center justify-between border-b pb-3 border-slate-100">
+                        <h3 class="font-serif text-lg font-bold text-navy-800"><i class="fa-solid fa-bullhorn text-gold-500 mr-2"></i>Warta & Pengumuman Warga</h3>
+                        <span id="admin-indicator" class="hidden text-xs bg-red-100 text-red-700 px-2 py-1 rounded font-bold"><i class="fa-solid fa-lock-open mr-1"></i>Admin Mode</span>
+                    </div>
+                    <div id="updates-list-container" class="space-y-3"></div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-serif text-lg font-bold text-navy-800 mb-4"><i class="fa-regular fa-calendar-check text-gold-500 mr-1.5"></i>Hari Libur & Hari Besar</h3>
+                        <div class="space-y-3" id="mini-calendar-list"></div>
+                    </div>
+                    <button onclick="App.router.navigate('kalender')" class="w-full mt-6 bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold py-3 rounded-xl hover:bg-navy-800 hover:text-white transition cursor-pointer">
+                        Lihat Seluruh Kalender <i class="fa-solid fa-chevron-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- 2. COMPONENT: YASIN & TAHLIL BACAAN -->
+    <template id="view-yasin">
+        <div class="space-y-6">
+            <div class="bg-white p-4 rounded-2xl shadow-md border border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex bg-slate-100 p-1 rounded-xl w-full sm:w-auto">
+                    <button onclick="App.views.yasin.switchReadingType('yasin_surah')" id="btn-read-yasin" class="flex-1 sm:flex-initial px-4 py-2 rounded-lg text-xs font-bold transition cursor-pointer bg-white text-navy-800 shadow-sm">Surah Yasin</button>
+                    <button onclick="App.views.yasin.switchReadingType('tahlil_guide')" id="btn-read-tahlil" class="flex-1 sm:flex-initial px-4 py-2 rounded-lg text-xs font-bold transition text-slate-500 hover:text-slate-800">Bacaan Tahlil</button>
+                </div>
+                <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto justify-end">
+                    <div class="flex items-center gap-1 bg-slate-50 p-1 rounded-lg border border-slate-200">
+                        <button onclick="App.views.yasin.setReadingTheme('light')" class="w-7 h-7 rounded-md bg-white border border-slate-300 shadow-sm" title="Mode Terang"></button>
+                        <button onclick="App.views.yasin.setReadingTheme('sepia')" class="w-7 h-7 rounded-md bg-[#f4ecd8] border border-amber-200" title="Mode Sepia"></button>
+                        <button onclick="App.views.yasin.setReadingTheme('dark')" class="w-7 h-7 rounded-md bg-slate-900 border border-slate-700" title="Mode Gelap"></button>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-xs text-slate-400 font-bold">Huruf:</span>
+                        <button onclick="App.views.yasin.changeFontSize(-2)" class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold hover:bg-slate-200 text-sm">-</button>
+                        <button onclick="App.views.yasin.changeFontSize(2)" class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold hover:bg-slate-200 text-sm">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="read-yasin-container" class="space-y-6">
+                <div class="card-read bg-white rounded-3xl p-6 md:p-8 text-center border border-slate-100 shadow-sm">
+                    <h2 class="font-serif text-3xl font-bold text-navy-800">سُورَةُ يسٓ</h2>
+                    <p class="text-sm text-slate-500 font-medium tracking-wide mt-2">Surat Yasin • 83 Ayat • Makkiyah</p>
+                    <div class="w-16 h-0.5 bg-gold-500 mx-auto my-4"></div>
+                    <p class="font-arabic text-3xl text-navy-800 mt-4 tracking-wide leading-loose">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                </div>
+                <div class="space-y-4" id="yasin-verses-list"></div>
+            </div>
+
+            <div id="read-tahlil-container" class="space-y-6 hidden">
+                <div class="card-read bg-white rounded-3xl p-6 md:p-8 text-center border border-slate-100 shadow-sm">
+                    <h2 class="font-serif text-3xl font-bold text-navy-800">سِلْسِلَةُ التَّهْلِيلِ</h2>
+                    <p class="text-sm text-slate-500 font-medium tracking-wide mt-2">Urutan Bacaan Tahlil Lengkap & Transliterasi</p>
+                    <div class="w-16 h-0.5 bg-gold-500 mx-auto my-4"></div>
+                </div>
+                <div class="space-y-4" id="tahlil-verses-list"></div>
+            </div>
+        </div>
+    </template>
+
+    <!-- 3. COMPONENT: ARISAN KOCOKAN -->
+    <template id="view-arisan">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="bg-white p-6 md:p-8 rounded-3xl shadow-md border border-slate-100 lg:col-span-2 flex flex-col justify-between min-h-[480px] relative overflow-hidden mosque-dome-card">
+                <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-navy-50/70 to-transparent pointer-events-none"></div>
+                <div class="text-center z-10 max-w-lg mx-auto">
+                    <span class="bg-gold-100 border border-gold-400 text-gold-600 text-xs px-3.5 py-1 rounded-full font-bold uppercase tracking-widest">
+                        <i class="fa-solid fa-dice-six animate-spin mr-1.5"></i> Sistem Arisan Transparan
+                    </span>
+                    <h3 class="font-serif text-2xl md:text-3xl font-bold text-navy-800 mt-3">Kocokan Shohibul Hajat</h3>
+                    <p class="text-sm text-slate-500 mt-1">Mengundi tuan rumah pekan depan beserta pembukuan otomatis potongan dana sosial.</p>
+                </div>
+
+                <div class="my-8 py-8 w-full max-w-md mx-auto bg-gradient-to-br from-navy-800 to-navy-900 rounded-3xl border-4 border-gold-500 shadow-2xl relative text-center px-4 overflow-hidden">
+                    <p class="text-xs font-bold text-gold-400 uppercase tracking-widest mb-1">Calon Tuan Rumah</p>
+                    <h2 id="arisan-winner-display" class="font-serif text-2xl md:text-4xl font-extrabold text-white py-4 tracking-wide break-words">SIAP DIKOCOK</h2>
+                    <div class="w-12 h-1 bg-gold-500 mx-auto rounded-full mt-2"></div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 z-10">
+                    <button onclick="App.views.arisan.startDraw()" id="btn-draw-start" class="w-full sm:w-auto px-8 py-4 bg-navy-800 text-white hover:bg-navy-900 border border-gold-500 rounded-2xl font-bold text-sm shadow-lg transition flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-shuffle"></i> Mulai Kocok Nama
+                    </button>
+                    <button onclick="App.views.arisan.openSettlement()" id="btn-draw-save" class="w-full sm:w-auto px-6 py-4 bg-emerald-600 text-white hover:bg-emerald-700 rounded-2xl font-bold text-sm shadow-md transition flex items-center justify-center gap-2 cursor-pointer" style="display: none;">
+                        <i class="fa-solid fa-calculator"></i> Proses Distribusi & Simpan
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+                        <h4 class="font-serif font-bold text-navy-800">Sisa Slot Arisan</h4>
+                        <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-bold" id="slot-count">0</span>
+                    </div>
+                    <div class="flex gap-2 mb-3">
+                        <button onclick="App.views.arisan.filterSlot('all')" id="btn-slot-all" class="flex-1 py-1 px-2 rounded bg-navy-50 text-navy-800 font-bold text-[10px]">Semua</button>
+                        <button onclick="App.views.arisan.filterSlot('yet')" id="btn-slot-yet" class="flex-1 py-1 px-2 rounded bg-slate-50 text-slate-400 text-[10px]">Belum Dapat</button>
+                    </div>
+                    <div class="space-y-2 max-h-[280px] overflow-y-auto pr-1 text-xs" id="arisan-slots-list"></div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-100 hidden" id="admin-arisan-controls">
+                    <button onclick="App.views.arisan.reset()" class="w-full text-slate-400 hover:text-red-500 font-semibold text-[11px] py-2 text-center transition cursor-pointer">
+                        <i class="fa-solid fa-arrows-rotate mr-1"></i> Reset Siklus Arisan Baru
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- 4. COMPONENT: LAPORAN KAS -->
+    <template id="view-kas">
+        <div class="space-y-6">
+            <div class="flex flex-col lg:flex-row justify-between items-stretch lg:items-center gap-4 bg-white p-5 rounded-2xl border border-slate-100 shadow-sm">
+                <div>
+                    <h3 class="font-serif text-xl font-bold text-navy-800">Buku Register Kas Transparan</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">Catatan iuran warga, pemeliharaan mushola, dan kurban</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="flex bg-slate-100 p-1 rounded-xl">
+                        <button onclick="App.views.kas.switchLedger('RT')" id="btn-kas-rt" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-white text-navy-800 shadow-sm">Kas RT</button>
+                        <button onclick="App.views.kas.switchLedger('Mushola')" id="btn-kas-mushola" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-white text-navy-800 shadow-sm">Kas Mushola</button>
+                        <button onclick="App.views.kas.switchLedger('Kurban')" id="btn-kas-kurban-sub" class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-500 hover:text-slate-800">Kas Kurban</button>
+                    </div>
+                    <button onclick="App.modals.openTransaction()" id="btn-add-kas-trigger" class="hidden px-4 py-2.5 bg-navy-800 text-white hover:bg-navy-900 text-xs font-bold rounded-xl shadow-md cursor-pointer transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-circle-plus"></i> Tambah Manual
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-md border border-slate-100 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs md:text-sm">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-100 text-slate-500 font-bold uppercase tracking-wider">
+                                <th class="p-4" id="col-date-title">Tanggal</th>
+                                <th class="p-4" id="col-desc-title">Keterangan</th>
+                                <th class="p-4" id="col-extra-title">Jenis</th>
+                                <th class="p-4 text-right">Jumlah</th>
+                                <th class="p-4 text-right">Saldo Akhir</th>
+                                <th class="p-4 text-center admin-action-col hidden">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ledger-table-body" class="divide-y divide-slate-100 text-slate-700"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- 5. COMPONENT: WARGA & PRESENSI -->
+    <template id="view-anggota">
+        <div class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3 md:col-span-2">
+                    <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+                    <input type="text" id="search-member-input" onkeyup="App.views.anggota.filterGrid()" placeholder="Cari nama warga RT 007..." class="w-full bg-transparent text-sm text-slate-800 focus:outline-none">
+                </div>
+                <button onclick="App.modals.openMember()" id="btn-add-member-trigger" class="hidden w-full bg-navy-800 text-white hover:bg-navy-900 py-4 px-6 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 shadow-sm cursor-pointer">
+                    <i class="fa-solid fa-user-plus text-gold-400"></i> Daftar Warga Baru
+                </button>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h3 class="font-serif text-lg font-bold text-navy-800"><i class="fa-solid fa-clipboard-user text-gold-500 mr-2"></i>Absensi Kehadiran Yasinan</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">Berikan tanda centang absensi kehadiran warga secara instan saat acara berlangsung.</p>
+                </div>
+                <div class="flex items-center gap-4 text-xs font-bold">
+                    <span class="text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-100" id="att-stats-hadir">Hadir: 0</span>
+                    <span class="text-amber-600 bg-amber-50 px-3 py-1.5 rounded-lg border border-amber-100" id="att-stats-izin">Izin: 0</span>
+                </div>
+            </div>
+
+            <div id="member-grid-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+    </template>
+
+    <!-- 6. COMPONENT: KALENDER -->
+    <template id="view-kalender">
+        <div class="bg-white p-6 rounded-3xl shadow-md border border-slate-100 space-y-6">
+            <div class="border-b pb-4 flex justify-between items-center">
+                <div>
+                    <h3 class="font-serif text-2xl font-bold text-navy-800">Kalender Kegiatan & Hari Libur</h3>
+                    <p class="text-xs text-slate-400">Jadwal libur nasional, hari besar Islam, dan agenda jamaah RT 007</p>
+                </div>
+                <div class="flex gap-2 text-xs font-bold">
+                    <span class="px-2.5 py-1 rounded bg-amber-100 text-amber-800 border border-amber-200">Kategori: Islam</span>
+                    <span class="px-2.5 py-1 rounded bg-blue-100 text-blue-800 border border-blue-200">Kategori: Nasional</span>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="calendar-full-grid"></div>
+        </div>
+    </template>
+
+    <!-- 7. COMPONENT: ADMIN SETTINGS -->
+    <template id="view-adminsettings">
+        <div class="bg-white p-6 rounded-3xl shadow-md border border-slate-100 space-y-6">
+            <div class="border-b pb-4">
+                <h3 class="font-serif text-2xl font-bold text-navy-800">Panel Kontrol Administrator</h3>
+                <p class="text-xs text-slate-400">Manajemen khusus sistem informasi Jamaah RT 007</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Form Tambah Pengumuman -->
+                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100 space-y-4">
+                    <h4 class="font-bold text-navy-800 text-sm"><i class="fa-solid fa-plus-circle text-gold-500 mr-1.5"></i>Buat Pengumuman Baru</h4>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 mb-1">Judul Pengumuman</label>
+                        <input type="text" id="admin-warta-title" placeholder="Contoh: Kerja Bakti Kebersihan" class="w-full border border-slate-200 rounded-lg p-2.5 text-xs bg-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 mb-1">Isi Detail</label>
+                        <textarea id="admin-warta-desc" rows="3" placeholder="Sebutkan tanggal, jam, dan perlengkapan..." class="w-full border border-slate-200 rounded-lg p-2.5 text-xs bg-white"></textarea>
+                    </div>
+                    <button onclick="App.views.adminsettings.saveWarta()" class="w-full bg-navy-800 text-white text-xs font-bold py-2.5 rounded-xl cursor-pointer">Posting Pengumuman</button>
+                </div>
+
+                <!-- Atur Banner Agenda -->
+                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100 space-y-4">
+                    <h4 class="font-bold text-navy-800 text-sm"><i class="fa-solid fa-calendar-plus text-gold-500 mr-1.5"></i>Atur Banner Agenda Terdekat</h4>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 mb-1">Nama Tuan Rumah Agenda</label>
+                        <input type="text" id="admin-agenda-host" class="w-full border border-slate-200 rounded-lg p-2.5 text-xs bg-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 mb-1">Alamat/Lokasi Pertemuan</label>
+                        <input type="text" id="admin-agenda-address" class="w-full border border-slate-200 rounded-lg p-2.5 text-xs bg-white">
+                    </div>
+                    <button onclick="App.views.adminsettings.updateAgenda()" class="w-full bg-gold-500 text-slate-900 text-xs font-bold py-2.5 rounded-xl cursor-pointer">Simpan Agenda Utama</button>
+                </div>
+            </div>
+
+            <div class="pt-4 border-t flex justify-end">
+                <button onclick="App.auth.logout()" class="px-5 py-2.5 bg-red-600 text-white text-xs font-bold rounded-xl cursor-pointer"><i class="fa-solid fa-power-off mr-1.5"></i>Keluar Mode Admin</button>
+            </div>
+        </div>
+    </template>
+
+    <!-- ================= JENDELA POP-UP / MODALS ================= -->
+
+    <!-- MODAL: SETTLEMENT ARISAN -->
+    <div id="modal-arisan-settlement" class="fixed inset-0 bg-navy-900/80 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden border border-slate-100 animate-in fade-in zoom-in-95 duration-200">
+            <div class="bg-navy-800 text-white p-5 font-serif font-bold text-center border-b-2 border-gold-500">
+                Distribusi & Potongan Kas Arisan
+            </div>
+            <div class="p-6 space-y-4">
+                <p class="text-xs text-slate-500">Penerima Arisan: <strong class="text-slate-800" id="settlement-winner-name">-</strong></p>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-1">Nominal Titipan Per Orang</label>
+                    <select id="settlement-iuran-nominal" onchange="App.views.arisan.recalculate()" class="w-full border border-slate-200 rounded-xl p-3 text-sm bg-slate-50">
+                        <option value="100000">Rp 100.000</option>
+                        <option value="150000" selected>Rp 150.000</option>
+                        <option value="200000">Rp 200.000</option>
+                    </select>
+                </div>
+                <div class="flex items-center justify-between bg-slate-50 p-3 rounded-xl border border-slate-100">
+                    <div class="flex flex-col">
+                        <span class="text-xs font-bold text-slate-700">Ikut Program Kurban?</span>
+                    </div>
+                    <input type="checkbox" id="settlement-kurban-check" onchange="App.views.arisan.recalculate()" checked class="w-5 h-5 accent-emerald-600">
+                </div>
+                <div id="settlement-kurban-amount-wrapper">
+                    <label class="block text-xs font-bold text-slate-500 mb-1">Nominal Potongan Kurban (Rp)</label>
+                    <input type="number" id="settlement-kurban-nominal" onkeyup="App.views.arisan.recalculate()" value="200000" class="w-full border border-slate-200 rounded-xl p-3 text-sm">
+                </div>
+                <div class="bg-navy-50/50 p-4 rounded-2xl border border-navy-100 space-y-2 text-xs">
+                    <div class="flex justify-between">
+                        <span>Total Kotor (20 Orang):</span>
+                        <span class="font-bold text-slate-800" id="settlement-txt-kotor">Rp 0</span>
+                    </div>
+                    <div class="flex justify-between text-red-600">
+                        <span>Potongan Kas Mushola Al-Ikhlas:</span>
+                        <span>- Rp 10.000</span>
+                    </div>
+                    <div class="flex justify-between text-red-600">
+                        <span>Potongan Kas RT 007:</span>
+                        <span>- Rp 20.000</span>
+                    </div>
+                    <div class="flex justify-between text-red-600" id="settlement-txt-potkurban-row">
+                        <span>Potongan Tabungan Kurban:</span>
+                        <span id="settlement-txt-potkurban">- Rp 0</span>
+                    </div>
+                    <hr class="border-slate-200">
+                    <div class="flex justify-between text-sm font-extrabold text-slate-900 pt-1">
+                        <span class="text-emerald-700">Jumlah Bersih Diterima:</span>
+                        <span class="text-emerald-700" id="settlement-txt-bersih">Rp 0</span>
+                    </div>
+                </div>
+                <div class="flex gap-2 pt-2">
+                    <button onclick="App.modals.closeArisanSettlement()" class="flex-1 py-3 bg-slate-100 text-xs font-bold rounded-xl text-slate-600">Batal</button>
+                    <button onclick="App.views.arisan.submitSettlement()" class="flex-1 py-3 bg-emerald-600 text-white text-xs font-bold rounded-xl">Proses & Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: PIN ADMIN -->
+    <div id="modal-pin" class="fixed inset-0 bg-navy-900/80 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+        <div class="bg-white w-full max-w-sm rounded-3xl shadow-2xl overflow-hidden border border-slate-100">
+            <div class="bg-navy-800 text-white p-5 font-serif font-bold text-center border-b-2 border-gold-500">Aktivasi Mode Administrator</div>
+            <div class="p-6 space-y-4 text-center">
+                <p class="text-xs text-slate-500">Masukkan PIN Rahasia RT 007 untuk membuka akses manajemen.</p>
+                <input type="password" id="input-admin-pin" placeholder="••••" class="w-32 mx-auto text-center border-2 border-slate-200 rounded-xl p-3 text-xl font-bold tracking-widest focus:outline-none focus:border-navy-800 bg-slate-50">
+                <div class="flex gap-2 pt-2">
+                    <button onclick="App.modals.closePin()" class="flex-1 py-2.5 bg-slate-100 text-xs font-bold rounded-xl text-slate-600">Batal</button>
+                    <button onclick="App.auth.validatePin()" class="flex-1 py-2.5 bg-navy-800 text-xs font-bold text-white rounded-xl">Verifikasi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: MANUAL TRANSACTION -->
+    <div id="modal-transaction" class="fixed inset-0 bg-navy-900/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden border border-slate-100">
+            <div class="bg-navy-800 text-white p-5 font-serif font-bold text-center relative border-b-2 border-gold-500">
+                Catat Transaksi Manual
+                <button onclick="App.modals.closeTransaction()" class="absolute right-5 top-5 text-white/70"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Target Buku Kas</label>
+                        <select id="form-tx-ledger" class="w-full border border-slate-200 rounded-xl p-3 text-sm">
+                            <option value="RT">Kas RT 007</option>
+                            <option value="Mushola">Kas Mushola</option>
+                            <option value="Kurban">Kas Kurban</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Tanggal</label>
+                        <input type="date" id="form-tx-date" class="w-full border border-slate-200 rounded-xl p-3 text-sm">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1" id="label-tx-desc">Keterangan Transaksi</label>
+                    <input type="text" id="form-tx-desc" placeholder="Contoh: Pembelian peralatan mushola" class="w-full border border-slate-200 rounded-xl p-3 text-sm">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Jenis Kas</label>
+                        <select id="form-tx-type" class="w-full border border-slate-200 rounded-xl p-3 text-sm">
+                            <option value="Masuk">Uang Masuk (+)</option>
+                            <option value="Keluar">Uang Keluar (-)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Nominal (Rp)</label>
+                        <input type="number" id="form-tx-amount" placeholder="Jumlah rupiah" class="w-full border border-slate-200 rounded-xl p-3 text-sm">
+                    </div>
+                </div>
+                <button onclick="App.views.kas.submitManual()" class="w-full mt-2 bg-navy-800 text-white py-3.5 rounded-2xl font-bold text-sm">Simpan Kas Transparan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: REGISTER NEW MEMBER -->
+    <div id="modal-member" class="fixed inset-0 bg-navy-900/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+        <div class="bg-white w-full max-w-sm rounded-3xl shadow-2xl overflow-hidden border border-slate-100">
+            <div class="bg-navy-800 text-white p-5 font-serif font-bold text-center relative border-b-2 border-gold-500">
+                Registrasi Warga RT 007
+                <button onclick="App.modals.closeMember()" class="absolute right-5 top-5 text-white/70"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Nama Lengkap</label>
+                    <input type="text" id="form-member-name" placeholder="Contoh: Bapak Siswanto" class="w-full border border-slate-200 rounded-xl p-3 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Status Keanggotaan</label>
+                    <select id="form-member-status" class="w-full border border-slate-200 rounded-xl p-3 text-sm">
+                        <option value="Aktif">Anggota Dari Awal</option>
+                        <option value="Kehormatan">Sesepuh / Tokoh Masyarakat</option>
+                    </select>
+                </div>
+                <div class="flex items-center justify-between bg-slate-50 p-3 rounded-xl border border-slate-100">
+                    <span class="text-xs font-bold text-slate-700">Ikut Program Kurban?</span>
+                    <input type="checkbox" id="form-member-kurban" class="w-5 h-5 accent-emerald-600">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Foto Profil (Kompres Otomatis)</label>
+                    <input type="file" id="form-member-photo" accept="image/*" class="w-full border border-slate-200 rounded-xl p-2 text-xs bg-slate-50">
+                </div>
+                <button onclick="App.views.anggota.submitRegistration()" class="w-full mt-2 bg-navy-800 text-white py-3.5 rounded-2xl font-bold text-sm">Masukkan Dalam Database</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= MENU NAVIGASI BAWAH / MELAYANG (PREMIUM FLOATING NAV) ================= -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-[0_-8px_24px_rgba(12,62,123,0.06)] border-t border-slate-100 z-40 md:bottom-6 md:top-auto md:left-1/2 md:right-auto md:-translate-x-1/2 md:w-[560px] md:rounded-2xl md:border md:shadow-2xl">
+        <div class="flex justify-around items-center p-3 max-w-md mx-auto md:max-w-none">
+            <button onclick="App.router.navigate('beranda')" id="nav-beranda" class="nav-btn flex flex-col items-center gap-1 text-navy-800 font-bold px-2 py-1 rounded-xl text-center transition">
+                <i class="fa-solid fa-square-poll-vertical text-lg"></i>
+                <span class="text-[9px] tracking-tight">Beranda</span>
+            </button>
+            <button onclick="App.router.navigate('yasin')" id="nav-yasin" class="nav-btn flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 px-2 py-1 rounded-xl text-center transition">
+                <i class="fa-solid fa-book-quran text-lg"></i>
+                <span class="text-[9px] tracking-tight">Yasinan</span>
+            </button>
+            <button onclick="App.router.navigate('arisan')" id="nav-arisan" class="nav-btn flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 px-2 py-1 rounded-xl text-center transition">
+                <i class="fa-solid fa-circle-nodes text-lg"></i>
+                <span class="text-[9px] tracking-tight">Arisan</span>
+            </button>
+            <button onclick="App.router.navigate('kas')" id="nav-kas" class="nav-btn flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 px-2 py-1 rounded-xl text-center transition">
+                <i class="fa-solid fa-file-invoice-dollar text-lg"></i>
+                <span class="text-[9px] tracking-tight">Kas RT</span>
+            </button>
+            <button onclick="App.router.navigate('anggota')" id="nav-anggota" class="nav-btn flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 px-2 py-1 rounded-xl text-center transition">
+                <i class="fa-solid fa-people-group text-lg"></i>
+                <span class="text-[9px] tracking-tight">Warga</span>
+            </button>
+            <button onclick="App.router.navigate('kalender')" id="nav-kalender" class="nav-btn flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 px-2 py-1 rounded-xl text-center transition">
+                <i class="fa-regular fa-calendar-days text-lg"></i>
+                <span class="text-[9px] tracking-tight">Kalender</span>
+            </button>
+            <button onclick="App.router.navigate('adminsettings')" id="nav-adminsettings" class="hidden nav-btn flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 px-2 py-1 rounded-xl text-center transition" title="Kontrol Panel">
+                <i class="fa-solid fa-screwdriver-wrench text-lg"></i>
+                <span class="text-[9px] tracking-tight">Admin</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- FOOTER OUTRO -->
+    <footer class="text-center py-8 text-[11px] text-slate-400 mt-12 border-t border-slate-200/50">
+        <p onclick="handleFooterClick()" class="cursor-pointer select-none hover:text-navy-800 transition py-2 font-semibold">
+            © 2026 Jamaah Yasin RT 007 RW 001 • Dsn Yosowinangun • DS Jajag
+        </p>
+        <p class="mt-1 font-serif italic text-slate-400/80">Satu Rukun, Satu Guyub, Membawa Berkah Sesama</p>
+    </footer>
+
+    <!-- ================= INTEGRASI DAN LOGIKA MODULAR ENGINE ================= -->
+    <script>
+        // Deteksi lingkungan Google Apps Script di baris pertama
+        const isGoogleAppsScript = typeof google !== "undefined" && typeof google.script !== "undefined";
+
+        // Database Fallback Keagamaan & Berkas Warga
+        const fallbackYasin = [
+            { no: 1, arabic: "يسٓ", latin: "Yā Sīn.", translation: "Ya Sin." },
+            { no: 2, arabic: "وَٱلْقُرْءَانِ ٱلْحَكِيمِ", latin: "Wal-Qur'ānil-hakīm.", translation: "Demi Al-Qur'an yang penuh hikmah," },
+            { no: 3, arabic: "إِنَّكَ لَمِنَ ٱلْمُرْسَلِينَ", latin: "Innaka laminal-mursalīn.", translation: "sungguh, engkau (Muhammad) adalah salah seorang dari rasul-rasul," },
+            { no: 4, arabic: "عَلَىٰ صِرَٰطٍ مُّسْتَقِيمٍ", latin: "Alā ṣirāṭim-mustaqīm.", translation: "(yang berada) di atas jalan yang lurus," },
+            { no: 5, arabic: "تَنزِيلَ ٱلْعَزِيزِ ٱلرَّحِيمِ", latin: "Tanzīlal-'azīzir-raḥīm.", translation: "(sebagai wahyu) yang diturunkan oleh (Allah) Yang Mahaperkasa, Maha Penyayang," }
+        ];
+
+        const fallbackTahlil = [
+            { title: "1. Hadiah Fatihah (Hadloroh)", text: "إِلَى حَضْرَةِ النَّبِيِّ الْمُصْطَفَى صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ وَآلِهِ وَأَزْوَاجِهِ وَذُرِّيَّتِهِ وَأَهْلِ بَيْتِهِ الْكِرَامِ، الْفَاتِحَة...", latin: "Ilaa hadlratin-nabiyyil-mushtafaa...", translation: "Kirim Al-Fatihah kepada junjungan mulia Nabi Muhammad SAW, keluarganya..." },
+            { title: "2. Membaca Surah Al-Ikhlas (3x)", text: "قُلْ هُوَ اللَّهُ أَحَدٌ. اللَّهُ الصَّمَدُ. لَمْ يَلِدْ وَلَمْ يُولَدْ. وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ", latin: "Qul huwallaahu ahad. Allaahush-shamad...", translation: "Katakanlah: Dialah Allah, Yang Maha Esa..." }
+        ];
+
+        const fallbackMembers = [
+            { id: "YS-007-01", name: "Bapak H. Ahmad Solihin", status: "Kehormatan", presence: "Hadir", wonArisan: false, kurbanParticipant: true, photo: "" },
+            { id: "YS-007-02", name: "Bapak M. Syukron", status: "Aktif", presence: "Hadir", wonArisan: false, kurbanParticipant: false, photo: "" },
+            { id: "YS-007-03", name: "Bapak Bambang Utomo", status: "Aktif", presence: "Hadir", wonArisan: false, kurbanParticipant: true, photo: "" },
+            { id: "YS-007-04", name: "Bapak Slamet Raharjo", status: "Aktif", presence: "Hadir", wonArisan: false, kurbanParticipant: true, photo: "" },
+            { id: "YS-007-05", name: "Bapak Sugeng Riyadi", status: "Aktif", presence: "Izin", wonArisan: false, kurbanParticipant: false, photo: "" }
+        ];
+
+        const fallbackKasRT = [{ id: 1, date: "2026-05-28", desc: "Kas Awal RT 007", type: "Masuk", amount: 2500000, balance: 2500000 }];
+        const fallbackKasMushola = [{ id: 1, date: "2026-05-28", desc: "Kas Awal Mushola Al-Ikhlas", type: "Masuk", amount: 1200000, balance: 1200000 }];
+        const fallbackKasKurban = [{ id: 1, date: "2026-05-28", name: "Bapak H. Ahmad Solihin", desc: "Setor Tabungan Awal Kurban 2026", type: "Masuk", amount: 1000000, balance: 1000000 }];
+        const fallbackWarta = [{ id: 1, title: "Program Kurban Berjamaah Idul Adha 2026", desc: "Sisa waktu 1 bulan menuju hari kurban. Bagi warga yang ikut arisan kurban harap segera merampungkan setoran." }];
+        const fallbackKalender = [
+            { tanggal: "2026-06-16", namaLibur: "Hari Raya Idul Adha 1447 H", kategori: "Islam" },
+            { tanggal: "2026-06-17", namaLibur: "Cuti Bersama Idul Adha", kategori: "Nasional" },
+            { tanggal: "2026-07-16", namaLibur: "Tahun Baru Islam 1448 H", kategori: "Islam" },
+            { tanggal: "2026-08-17", namaLibur: "Hari Kemerdekaan RI ke-81", kategori: "Nasional" }
+        ];
+
+        // ENGINE UTAMA JAMAAH APP (MODULAR STRUCTURE)
+        const App = {
+            state: {
+                members: [],
+                kasRT: [],
+                kasMushola: [],
+                kasKurban: [],
+                warta: [],
+                kalender: [],
+                yasin: [],
+                tahlil: [],
+                fontSizeArabic: 30,
+                readingTheme: 'light',
+                slotFilter: 'all',
+                kasLedger: 'RT',
+                isAdmin: false,
+                agendaHost: "Bapak Slamet Raharjo",
+                agendaAddress: "RT 007 RW 001 (Utara Musholla Al-Ikhlas)",
+                tempDrawWinner: null
+            },
+
+            // 1. DYNAMIC ROUTER (Navigasi Antar Halaman)
+            router: {
+                current: 'beranda',
+                navigate(viewId) {
+                    App.state.tempDrawWinner = null; // Reset kocokan saat pindah tab
+                    App.router.current = viewId;
+                    
+                    // Render template modular ke viewport
+                    const template = document.getElementById(`view-${viewId}`);
+                    const viewport = document.getElementById('app-viewport');
+                    if (template && viewport) {
+                        viewport.innerHTML = '';
+                        viewport.appendChild(template.content.cloneNode(true));
+                    }
+
+                    // Update UI Navigasi
+                    document.querySelectorAll('.nav-btn').forEach(btn => {
+                        btn.classList.remove('text-navy-800', 'font-bold');
+                        btn.classList.add('text-slate-400');
+                    });
+                    const activeBtn = document.getElementById('nav-' + viewId);
+                    if(activeBtn) {
+                        activeBtn.classList.add('text-navy-800', 'font-bold');
+                        activeBtn.classList.remove('text-slate-400');
+                    }
+
+                    // Inisialisasi logika khusus per halaman
+                    if (App.views[viewId] && App.views[viewId].init) {
+                        App.views[viewId].init();
+                    }
+
+                    App.renderCommonUI();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            },
+
+            // 2. MODUL HALAMAN (VIEWS)
+            views: {
+                beranda: {
+                    init() {
+                        App.views.beranda.renderWarta();
+                        App.views.beranda.renderMiniCalendar();
+                        App.views.beranda.calculateCountdown();
+                    },
+                    renderWarta() {
+                        const container = document.getElementById('updates-list-container');
+                        if (!container) return;
+                        container.innerHTML = "";
+                        App.state.warta.forEach(item => {
+                            container.innerHTML += `
+                                <div class="p-4 rounded-xl border border-slate-100 bg-slate-50 relative">
+                                    <h4 class="text-xs font-bold text-navy-800 mb-1 flex items-center justify-between">
+                                        <span>${item.title}</span>
+                                        ${App.state.isAdmin ? `<button onclick="App.views.adminsettings.deleteWarta(${item.id})" class="text-red-500 hover:text-red-700 cursor-pointer"><i class="fa-regular fa-trash-can"></i></button>` : ''}
+                                    </h4>
+                                    <p class="text-[11px] text-slate-600 leading-relaxed">${item.desc}</p>
+                                </div>
+                            `;
+                        });
+                    },
+                    renderMiniCalendar() {
+                        const miniList = document.getElementById('mini-calendar-list');
+                        if (!miniList) return;
+                        miniList.innerHTML = "";
+                        App.state.kalender.slice(0, 3).forEach(event => {
+                            const colorClass = event.kategori === 'Islam' ? 'bg-amber-50 text-amber-700' : 'bg-blue-50 text-blue-700';
+                            miniList.innerHTML += `
+                                <div class="flex items-center gap-3.5 p-2 rounded-xl border border-transparent">
+                                    <div class="px-2.5 py-1 rounded-lg ${colorClass} text-[10px] font-bold text-center font-mono">
+                                        ${event.tanggal.substring(8,10)}/${event.tanggal.substring(5,7)}
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-xs text-slate-700">${event.namaLibur}</p>
+                                        <p class="text-[9px] text-slate-400">${event.kategori}</p>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    },
+                    calculateCountdown() {
+                        const now = new Date();
+                        const resultElement = document.getElementById('countdown-timer');
+                        if(!resultElement) return;
+
+                        let target = new Date();
+                        target.setDate(now.getDate() + (4 - now.getDay() + 7) % 7);
+                        target.setHours(18, 45, 0, 0);
+
+                        if (now > target) {
+                            target.setDate(target.getDate() + 7);
+                        }
+
+                        const diff = target - now;
+                        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+                        const pad = (n) => n < 10 ? '0' + n : n;
+
+                        resultElement.innerHTML = `
+                            <div><span class="block">${pad(days)}</span><span class="text-[9px] uppercase font-sans text-slate-300">Hari</span></div>
+                            <span>:</span>
+                            <div><span class="block">${pad(hours)}</span><span class="text-[9px] uppercase font-sans text-slate-300">Jam</span></div>
+                            <span>:</span>
+                            <div><span class="block">${pad(mins)}</span><span class="text-[9px] uppercase font-sans text-slate-300">Meni</span></div>
+                        `;
+                    }
+                },
+
+                yasin: {
+                    init() {
+                        App.views.yasin.loadQuran();
+                    },
+                    loadQuran() {
+                        const yasinList = document.getElementById('yasin-verses-list');
+                        if (yasinList) {
+                            yasinList.innerHTML = "";
+                            App.state.yasin.forEach(v => {
+                                yasinList.innerHTML += `
+                                    <div class="card-read bg-white rounded-2xl p-6 md:p-8 border border-slate-100 shadow-sm space-y-4">
+                                        <div class="flex justify-between items-center border-b border-slate-100/65 pb-3">
+                                            <span class="w-7 h-7 rounded-full bg-gold-500 text-white flex items-center justify-center font-serif text-xs font-bold">${v.no}</span>
+                                        </div>
+                                        <p class="arabic-text font-arabic text-3xl text-right text-slate-800 font-bold tracking-wide leading-loose">${v.arabic}</p>
+                                        <div class="space-y-1">
+                                            <p class="text-sm text-emerald-700 italic font-semibold">${v.latin}</p>
+                                            <p class="text-sm text-slate-600 leading-relaxed">${v.translation}</p>
+                                        </div>
+                                    </div>
+                                `;
+                            });
+                        }
+
+                        const tahlilList = document.getElementById('tahlil-verses-list');
+                        if (tahlilList) {
+                            tahlilList.innerHTML = "";
+                            App.state.tahlil.forEach(t => {
+                                tahlilList.innerHTML += `
+                                    <div class="card-read bg-white rounded-2xl p-6 md:p-8 border border-slate-100 shadow-sm space-y-4">
+                                        <div class="border-b pb-2"><h4 class="font-serif font-bold text-navy-800">${t.title}</h4></div>
+                                        <p class="arabic-text font-arabic text-3xl text-right text-slate-800 font-bold tracking-wide leading-loose">${t.text}</p>
+                                        <p class="text-sm text-emerald-700 italic font-semibold">${t.latin}</p>
+                                        <p class="text-sm text-slate-600 leading-relaxed italic">${t.translation}</p>
+                                    </div>
+                                `;
+                            });
+                        }
+                    },
+                    switchReadingType(type) {
+                        if (type === 'yasin_surah') {
+                            document.getElementById('read-yasin-container').classList.remove('hidden');
+                            document.getElementById('read-tahlil-container').classList.add('hidden');
+                            document.getElementById('btn-read-yasin').className = "flex-1 sm:flex-initial px-4 py-2 rounded-lg text-xs font-bold transition bg-white text-navy-800 shadow-sm";
+                            document.getElementById('btn-read-tahlil').className = "flex-1 sm:flex-initial px-4 py-2 rounded-lg text-xs font-bold transition text-slate-500 hover:text-slate-800";
+                        } else {
+                            document.getElementById('read-yasin-container').classList.add('hidden');
+                            document.getElementById('read-tahlil-container').classList.remove('hidden');
+                            document.getElementById('btn-read-yasin').className = "flex-1 sm:flex-initial px-4 py-2 rounded-lg text-xs font-bold transition text-slate-500 hover:text-slate-800";
+                            document.getElementById('btn-read-tahlil').className = "flex-1 sm:flex-initial px-4 py-2 rounded-lg text-xs font-bold transition bg-white text-navy-800 shadow-sm";
+                        }
+                    },
+                    setReadingTheme(theme) {
+                        App.state.readingTheme = theme;
+                        const elements = document.querySelectorAll('.card-read');
+                        const parent = document.getElementById('yasin');
+
+                        parent.className = "tab-content active space-y-6";
+                        elements.forEach(el => {
+                            el.className = "card-read bg-white rounded-2xl p-6 md:p-8 border border-slate-100 shadow-sm space-y-4";
+                        });
+
+                        if(theme === 'sepia') {
+                            parent.classList.add('mode-sepia');
+                            elements.forEach(el => el.classList.add('mode-sepia'));
+                        } else if (theme === 'dark') {
+                            parent.classList.add('mode-dark');
+                            elements.forEach(el => el.classList.add('mode-dark'));
+                        }
+                    },
+                    changeFontSize(delta) {
+                        App.state.fontSizeArabic += delta;
+                        if(App.state.fontSizeArabic < 20) App.state.fontSizeArabic = 20;
+                        if(App.state.fontSizeArabic > 48) App.state.fontSizeArabic = 48;
+
+                        document.querySelectorAll('.arabic-text').forEach(p => {
+                            p.style.fontSize = App.state.fontSizeArabic + 'px';
+                        });
+                    }
+                },
+
+                arisan: {
+                    init() {
+                        App.views.arisan.renderSlots();
+                        if (App.state.isAdmin) {
+                            document.getElementById('admin-arisan-controls').classList.remove('hidden');
+                        }
+                    },
+                    renderSlots() {
+                        const list = document.getElementById('arisan-slots-list');
+                        if (!list) return;
+                        list.innerHTML = "";
+                        let count = 0;
+
+                        App.state.members.forEach(member => {
+                            if (App.state.slotFilter === 'yet' && member.wonArisan) return;
+                            count++;
+                            const statusBadge = member.wonArisan 
+                                ? `<span class="bg-slate-100 text-slate-500 text-[10px] px-2.5 py-0.5 rounded-full font-bold">Sudah Dapat</span>`
+                                : `<span class="bg-gold-100 text-gold-600 text-[10px] px-2.5 py-0.5 rounded-full font-bold">Belum Dapat</span>`;
+
+                            list.innerHTML += `
+                                <div class="flex justify-between items-center p-2.5 rounded-xl border border-slate-100 bg-slate-50/50">
+                                    <span class="font-semibold text-slate-700">${member.name}</span>
+                                    ${statusBadge}
+                                </div>
+                            `;
+                        });
+                        document.getElementById('slot-count').innerText = count;
+                    },
+                    filterSlot(mode) {
+                        App.state.slotFilter = mode;
+                        document.getElementById('btn-slot-all').className = mode === 'all' ? 'flex-1 py-1 px-2 rounded bg-navy-50 text-navy-800 font-bold text-[10px]' : 'flex-1 py-1 px-2 rounded bg-slate-50 text-slate-400 text-[10px]';
+                        document.getElementById('btn-slot-yet').className = mode === 'yet' ? 'flex-1 py-1 px-2 rounded bg-navy-50 text-navy-800 font-bold text-[10px]' : 'flex-1 py-1 px-2 rounded bg-slate-50 text-slate-400 text-[10px]';
+                        App.views.arisan.renderSlots();
+                    },
+                    startDraw() {
+                        const eligible = App.state.members.filter(m => !m.wonArisan);
+                        const btnStart = document.getElementById('btn-draw-start');
+                        const btnSave = document.getElementById('btn-draw-save');
+                        const display = document.getElementById('arisan-winner-display');
+
+                        if(eligible.length === 0) {
+                            App.showToast("Semua anggota telah mendapat arisan putaran ini!", false);
+                            return;
+                        }
+
+                        btnStart.disabled = true;
+                        btnStart.classList.add('opacity-50');
+                        btnSave.style.display = 'none';
+                        App.state.tempDrawWinner = null;
+
+                        let ticks = 0;
+                        const interval = setInterval(() => {
+                            const randomMember = eligible[Math.floor(Math.random() * eligible.length)];
+                            display.innerText = randomMember.name;
+                            ticks++;
+                            if (ticks > 25) {
+                                clearInterval(interval);
+                                const winner = eligible[Math.floor(Math.random() * eligible.length)];
+                                display.innerText = "🎉 " + winner.name.toUpperCase() + " 🎉";
+                                App.state.tempDrawWinner = winner;
+
+                                App.launchConfetti();
+
+                                btnStart.disabled = false;
+                                btnStart.classList.remove('opacity-50');
+                                btnStart.innerHTML = `<i class="fa-solid fa-rotate-left"></i> Kocok Ulang`;
+                                btnSave.style.display = 'inline-flex';
+                                App.showToast(`Kocokan terhenti pada: ${winner.name}`);
+                            }
+                        }, 100);
+                    },
+                    openSettlement() {
+                        if(!App.state.tempDrawWinner) return;
+                        document.getElementById('settlement-winner-name').innerText = App.state.tempDrawWinner.name;
+                        document.getElementById('settlement-kurban-check').checked = App.state.tempDrawWinner.kurbanParticipant;
+                        document.getElementById('settlement-total-anggota').innerText = App.state.members.length;
+                        
+                        App.views.arisan.recalculate();
+                        document.getElementById('modal-arisan-settlement').classList.remove('hidden');
+                    },
+                    recalculate() {
+                        const iuran = parseInt(document.getElementById('settlement-iuran-nominal').value);
+                        const totalAnggota = App.state.members.length;
+                        const totalKotor = totalAnggota * iuran;
+                        
+                        const potMushola = 10000;
+                        const potRT = 20000;
+                        
+                        const isKurban = document.getElementById('settlement-kurban-check').checked;
+                        const wrapper = document.getElementById('settlement-kurban-amount-wrapper');
+                        let potKurban = 0;
+
+                        if (isKurban) {
+                            wrapper.classList.remove('hidden');
+                            potKurban = parseInt(document.getElementById('settlement-kurban-nominal').value) || 0;
+                            document.getElementById('settlement-txt-potkurban-row').classList.remove('hidden');
+                            document.getElementById('settlement-txt-potkurban').innerText = `- Rp ${new Intl.NumberFormat('id-ID').format(potKurban)}`;
+                        } else {
+                            wrapper.classList.add('hidden');
+                            document.getElementById('settlement-txt-potkurban-row').classList.add('hidden');
+                        }
+
+                        const bersih = totalKotor - potMushola - potRT - potKurban;
+
+                        document.getElementById('settlement-txt-kotor').innerText = `Rp ${new Intl.NumberFormat('id-ID').format(totalKotor)}`;
+                        document.getElementById('settlement-txt-bersih').innerText = `Rp ${new Intl.NumberFormat('id-ID').format(bersih)}`;
+                    },
+                    submitSettlement() {
+                        if(!App.state.tempDrawWinner) return;
+
+                        const iuran = parseInt(document.getElementById('settlement-iuran-nominal').value);
+                        const isKurban = document.getElementById('settlement-kurban-check').checked;
+                        const potKurban = isKurban ? (parseInt(document.getElementById('settlement-kurban-nominal').value) || 0) : 0;
+                        const todayStr = new Date().toISOString().substring(0, 10);
+
+                        if (isGoogleAppsScript) {
+                            document.getElementById('loading-overlay').classList.remove('hidden');
+                            document.getElementById('loading-text').innerText = "Menyimpan ke Google Sheets...";
+                            
+                            google.script.run.withSuccessHandler(function(res) {
+                                loadDataFromGoogleSheets();
+                                App.modals.closeArisanSettlement();
+                                document.getElementById('btn-draw-save').style.display = 'none';
+                                document.getElementById('arisan-winner-display').innerText = "TERSIMPAN DI CLOUD";
+                                App.showToast("Berhasil mendistribusikan kas arisan ke Google Sheets!");
+                            }).saveArisanDrawGAS(App.state.tempDrawWinner.name, App.state.tempDrawWinner.id, iuran, potKurban, isKurban);
+                        } else {
+                            // LOCAL STORAGE BACKUP
+                            App.state.kasMushola.unshift({
+                                id: Date.now() + 1,
+                                date: todayStr,
+                                desc: `Potongan Arisan Mushola - ${App.state.tempDrawWinner.name}`,
+                                type: "Masuk",
+                                amount: 10000,
+                                balance: (App.state.kasMushola[0]?.balance || 0) + 10000
+                            });
+
+                            App.state.kasRT.unshift({
+                                id: Date.now() + 2,
+                                date: todayStr,
+                                desc: `Potongan Arisan RT - ${App.state.tempDrawWinner.name}`,
+                                type: "Masuk",
+                                amount: 20000,
+                                balance: (App.state.kasRT[0]?.balance || 0) + 20000
+                            });
+
+                            if(isKurban && potKurban > 0) {
+                                App.state.kasKurban.unshift({
+                                    id: Date.now() + 3,
+                                    date: todayStr,
+                                    name: App.state.tempDrawWinner.name,
+                                    desc: `Penyisihan Tabungan Kurban Otomatis`,
+                                    type: "Masuk",
+                                    amount: potKurban,
+                                    balance: (App.state.kasKurban[0]?.balance || 0) + potKurban
+                                });
+                            }
+
+                            const index = App.state.members.findIndex(m => m.id === App.state.tempDrawWinner.id);
+                            if(index > -1) {
+                                App.state.members[index].wonArisan = true;
+                            }
+
+                            saveStateToStorage();
+                            App.modals.closeArisanSettlement();
+                            document.getElementById('btn-draw-save').style.display = 'none';
+                            document.getElementById('arisan-winner-display').innerText = "KAS DEBET OK";
+                            App.views.arisan.renderSlots();
+                            App.showToast(`Sohibul hajat ${App.state.tempDrawWinner.name} sukses diarsipkan!`);
+                        }
+                    },
+                    reset() {
+                        if(confirm("Mulai siklus arisan baru? Warga akan berstatus BELUM DAPAT.")) {
+                            App.state.members.forEach(m => m.wonArisan = false);
+                            saveStateToStorage();
+                            App.views.arisan.renderSlots();
+                            document.getElementById('arisan-winner-display').innerText = "SIAP DIKOCOK";
+                            App.showToast("Siklus arisan baru telah di-reset!");
+                        }
+                    }
+                },
+
+                kas: {
+                    init() {
+                        App.views.kas.renderTable();
+                        if (App.state.isAdmin) {
+                            document.getElementById('btn-add-kas-trigger').classList.remove('hidden');
+                            document.querySelectorAll('.admin-action-col').forEach(el => el.classList.remove('hidden'));
+                        }
+                    },
+                    renderTable() {
+                        const body = document.getElementById('ledger-table-body');
+                        if (!body) return;
+                        body.innerHTML = "";
+
+                        let transactionsToRender = [];
+                        if (App.state.kasLedger === 'RT') {
+                            transactionsToRender = App.state.kasRT;
+                            document.getElementById('col-desc-title').innerText = "Keterangan Transaksi RT";
+                            document.getElementById('col-extra-title').innerText = "Sifat";
+                        } else if (App.state.kasLedger === 'Mushola') {
+                            transactionsToRender = App.state.kasMushola;
+                            document.getElementById('col-desc-title').innerText = "Keterangan Kas Mushola";
+                            document.getElementById('col-extra-title').innerText = "Sifat";
+                        } else if (App.state.kasLedger === 'Kurban') {
+                            transactionsToRender = App.state.kasKurban;
+                            document.getElementById('col-desc-title').innerText = "Anggota";
+                            document.getElementById('col-extra-title').innerText = "Keterangan";
+                        }
+
+                        transactionsToRender.forEach(tx => {
+                            const amountText = tx.type === "Masuk" 
+                                ? `<span class="font-extrabold text-emerald-600">+ Rp ${new Intl.NumberFormat('id-ID').format(tx.amount)}</span>`
+                                : `<span class="font-extrabold text-red-500">- Rp ${new Intl.NumberFormat('id-ID').format(tx.amount)}</span>`;
+
+                            const badge = tx.type === "Masuk"
+                                ? `<span class="bg-emerald-50 text-emerald-700 text-[10px] px-2.5 py-0.5 rounded-full font-bold">Masuk</span>`
+                                : `<span class="bg-red-50 text-red-700 text-[10px] px-2.5 py-0.5 rounded-full font-bold">Keluar</span>`;
+
+                            let colExtraContent = badge;
+                            let colDescContent = tx.desc;
+
+                            if (App.state.kasLedger === 'Kurban') {
+                                colDescContent = `<strong class="text-slate-800">${tx.name}</strong>`;
+                                colExtraContent = `<span class="text-xs text-slate-500">${tx.desc}</span>`;
+                            }
+
+                            body.innerHTML += `
+                                <tr class="hover:bg-slate-50/70 transition">
+                                    <td class="p-4 text-slate-400 font-medium">${tx.date}</td>
+                                    <td class="p-4 font-bold text-slate-700">${colDescContent}</td>
+                                    <td class="p-4">${colExtraContent}</td>
+                                    <td class="p-4 text-right">${amountText}</td>
+                                    <td class="p-4 text-right font-bold text-slate-700">Rp ${new Intl.NumberFormat('id-ID').format(tx.balance || 0)}</td>
+                                    <td class="p-4 text-center admin-action-col ${App.state.isAdmin ? '' : 'hidden'}">
+                                        <button onclick="App.views.kas.deleteTx(${tx.id})" class="text-red-500 hover:text-red-700 transition cursor-pointer"><i class="fa-regular fa-trash-can"></i></button>
+                                    </td>
+                                </tr>
+                            `;
+                        });
+                    },
+                    switchLedger(ledgerName) {
+                        App.state.kasLedger = ledgerName;
+                        document.getElementById('btn-kas-rt').className = ledgerName === 'RT' ? 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-white text-navy-800 shadow-sm' : 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-500 hover:text-slate-800';
+                        document.getElementById('btn-kas-mushola').className = ledgerName === 'Mushola' ? 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-white text-navy-800 shadow-sm' : 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-500 hover:text-slate-800';
+                        document.getElementById('btn-kas-kurban-sub').className = ledgerName === 'Kurban' ? 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-white text-navy-800 shadow-sm' : 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-500 hover:text-slate-800';
+                        App.views.kas.renderTable();
+                    },
+                    submitManual() {
+                        const target = document.getElementById('form-tx-ledger').value;
+                        const date = document.getElementById('form-tx-date').value;
+                        const desc = document.getElementById('form-tx-desc').value;
+                        const type = document.getElementById('form-tx-type').value;
+                        const amount = parseInt(document.getElementById('form-tx-amount').value);
+
+                        if(!desc || !amount) {
+                            App.showToast("Form input belum lengkap!", false);
+                            return;
+                        }
+
+                        if (isGoogleAppsScript) {
+                            document.getElementById('loading-overlay').classList.remove('hidden');
+                            document.getElementById('loading-text').innerText = "Menyimpan Transaksi Baru...";
+                            google.script.run.withSuccessHandler(function() {
+                                loadDataFromGoogleSheets();
+                                App.modals.closeTransaction();
+                                App.showToast("Transaksi manual sukses diarsipkan ke Google Sheets!");
+                            }).addKasTransactionGAS(date, desc, type, amount);
+                        } else {
+                            let ledgerList = target === 'RT' ? App.state.kasRT : (target === 'Mushola' ? App.state.kasMushola : App.state.kasKurban);
+                            let prevBalance = ledgerList.length > 0 ? ledgerList[0].balance : 0;
+                            let newBalance = type === 'Masuk' ? prevBalance + amount : prevBalance - amount;
+
+                            ledgerList.unshift({
+                                id: Date.now(),
+                                date,
+                                desc: target === 'Kurban' ? 'Setoran Tabung Kurban Manual' : desc,
+                                name: target === 'Kurban' ? desc : undefined,
+                                type,
+                                amount,
+                                balance: newBalance
+                            });
+                            saveStateToStorage();
+                            App.views.kas.renderTable();
+                            App.modals.closeTransaction();
+                            App.showToast("Transaksi manual sukses diarsipkan!");
+                        }
+                    },
+                    deleteTx(id) {
+                        if(confirm("Hapus catatan transaksi ini?")) {
+                            if(App.state.kasLedger === 'RT') {
+                                App.state.kasRT = App.state.kasRT.filter(tx => tx.id !== id);
+                            } else if(App.state.kasLedger === 'Mushola') {
+                                App.state.kasMushola = App.state.kasMushola.filter(tx => tx.id !== id);
+                            } else {
+                                App.state.kasKurban = App.state.kasKurban.filter(tx => tx.id !== id);
+                            }
+                            saveStateToStorage();
+                            App.views.kas.renderTable();
+                            App.showToast("Transaksi dihapus.");
+                        }
+                    }
+                },
+
+                anggota: {
+                    init() {
+                        App.views.anggota.renderGrid();
+                        if (App.state.isAdmin) {
+                            document.getElementById('btn-add-member-trigger').classList.remove('hidden');
+                        }
+                    },
+                    renderGrid() {
+                        const container = document.getElementById('member-grid-container');
+                        if (!container) return;
+                        container.innerHTML = "";
+
+                        let countHadir = 0;
+                        let countIzin = 0;
+
+                        App.state.members.forEach(member => {
+                            let indicatorColor = "bg-slate-300";
+
+                            if (member.presence === "Hadir") {
+                                countHadir++;
+                                indicatorColor = "bg-emerald-500";
+                            } else if (member.presence === "Izin") {
+                                countIzin++;
+                                indicatorColor = "bg-amber-400";
+                            }
+
+                            const profileImg = member.photo 
+                                ? `<img src="${member.photo}" class="w-10 h-10 rounded-xl object-cover">`
+                                : `<div class="w-10 h-10 rounded-xl bg-navy-50 text-navy-800 font-serif font-bold text-xs flex items-center justify-center">${member.name.split(' ').slice(-1)[0].substring(0, 2).toUpperCase()}</div>`;
+
+                            container.innerHTML += `
+                                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between hover:border-navy-100 transition duration-150 item-warga">
+                                    <div class="flex items-center gap-3">
+                                        <div class="relative">
+                                            ${profileImg}
+                                            <span class="absolute -top-1 -right-1 w-2.5 h-2.5 ${indicatorColor} rounded-full border-2 border-white"></span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-sm text-slate-800 name-tag flex items-center gap-1.5">
+                                                <span>${member.name}</span>
+                                                ${App.state.isAdmin ? `<button onclick="App.views.anggota.delete('${member.id}')" class="text-[10px] text-red-500 hover:text-red-700 ml-1 cursor-pointer"><i class="fa-regular fa-trash-can"></i></button>` : ''}
+                                            </h4>
+                                            <div class="flex gap-1 items-center mt-0.5">
+                                                <span class="text-[9px] text-slate-400 font-bold uppercase">${member.status}</span>
+                                                ${member.kurbanparticipant || member.kurbanParticipant ? `<span class="bg-emerald-50 text-emerald-700 text-[8px] font-extrabold px-1 rounded">KURBAN</span>` : ''}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <button onclick="App.views.anggota.togglePres('${member.id}', 'Hadir')" class="w-7 h-7 rounded-md ${member.presence === 'Hadir' ? 'bg-emerald-50 text-emerald-600 border border-emerald-300' : 'bg-slate-50 text-slate-400'} text-xs font-bold transition cursor-pointer">H</button>
+                                        <button onclick="App.views.anggota.togglePres('${member.id}', 'Izin')" class="w-7 h-7 rounded-md ${member.presence === 'Izin' ? 'bg-amber-50 text-amber-600 border border-amber-300' : 'bg-slate-50 text-slate-400'} text-xs font-bold transition cursor-pointer">I</button>
+                                        <button onclick="App.views.anggota.togglePres('${member.id}', 'Absen')" class="w-7 h-7 rounded-md ${member.presence === 'Absen' ? 'bg-red-50 text-red-500 border border-red-300' : 'bg-slate-50 text-slate-400'} text-xs font-bold transition cursor-pointer">A</button>
+                                    </div>
+                                </div>
+                            `;
+                        });
+
+                        document.getElementById('att-stats-hadir').innerText = `Hadir: ${countHadir}`;
+                        document.getElementById('att-stats-izin').innerText = `Izin: ${countIzin}`;
+                    },
+                    togglePres(memberId, status) {
+                        const index = App.state.members.findIndex(m => m.id === memberId);
+                        if (index > -1) {
+                            App.state.members[index].presence = status;
+                            saveStateToStorage();
+                            App.views.anggota.renderGrid();
+                            App.showToast(`Presensi ${App.state.members[index].name} diperbarui.`);
+                        }
+                    },
+                    filterGrid() {
+                        const input = document.getElementById('search-member-input').value.toUpperCase();
+                        const items = document.getElementsByClassName('item-warga');
+                        for (let i = 0; i < items.length; i++) {
+                            let nameTag = items[i].getElementsByClassName('name-tag')[0];
+                            if (nameTag) {
+                                let txtValue = nameTag.textContent || nameTag.innerText;
+                                items[i].style.display = txtValue.toUpperCase().indexOf(input) > -1 ? "" : "none";
+                            }
+                        }
+                    },
+                    submitRegistration() {
+                        const name = document.getElementById('form-member-name').value;
+                        const status = document.getElementById('form-member-status').value;
+                        const isKurban = document.getElementById('form-member-kurban').checked;
+                        const photoInput = document.getElementById('form-member-photo');
+
+                        if(!name) {
+                            App.showToast("Harap isi nama lengkap warga!", false);
+                            return;
+                        }
+
+                        const executeSave = (photoBase64 = "") => {
+                            if (isGoogleAppsScript) {
+                                document.getElementById('loading-overlay').classList.remove('hidden');
+                                document.getElementById('loading-text').innerText = "Menyimpan Anggota Baru...";
+                                google.script.run.withSuccessHandler(function() {
+                                    loadDataFromGoogleSheets();
+                                    App.modals.closeMember();
+                                    App.showToast(`Warga ${name} berhasil didaftarkan ke Google Sheets!`);
+                                }).registerNewMemberGAS(name, status, photoBase64);
+                            } else {
+                                App.state.members.push({
+                                    id: "YS-007-" + String(App.state.members.length + 1).padStart(2, '0'),
+                                    name,
+                                    status,
+                                    presence: "Absen",
+                                    wonArisan: false,
+                                    kurbanParticipant: isKurban,
+                                    photo: photoBase64
+                                });
+                                saveStateToStorage();
+                                App.views.anggota.renderGrid();
+                                App.modals.closeMember();
+                                App.showToast(`Warga ${name} berhasil didaftarkan.`);
+                            }
+                        };
+
+                        if (photoInput.files && photoInput.files[0]) {
+                            const reader = new FileReader();
+                            reader.readAsDataURL(photoInput.files[0]);
+                            reader.onload = function(event) { executeSave(event.target.result); }
+                        } else {
+                            executeSave();
+                        }
+                    },
+                    delete(id) {
+                        if (confirm("Keluarkan warga ini dari database?")) {
+                            App.state.members = App.state.members.filter(m => m.id !== id);
+                            saveStateToStorage();
+                            App.views.anggota.renderGrid();
+                            App.showToast("Warga dihapus.");
+                        }
+                    }
+                },
+
+                kalender: {
+                    init() {
+                        const container = document.getElementById('calendar-full-grid');
+                        if (!container) return;
+                        container.innerHTML = "";
+
+                        App.state.kalender.forEach(event => {
+                            const colorClass = event.kategori === 'Islam' ? 'bg-amber-50 text-amber-800 border-amber-200' : 'bg-blue-50 text-blue-800 border-blue-200';
+                            container.innerHTML += `
+                                <div class="p-5 rounded-2xl border ${colorClass} flex justify-between items-center">
+                                    <div>
+                                        <span class="text-xs uppercase font-bold tracking-wider opacity-75">${event.kategori}</span>
+                                        <h4 class="font-bold text-base mt-1 text-slate-800">${event.namaLibur}</h4>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="block text-lg font-mono font-extrabold text-slate-900">${event.tanggal.substring(8,10)}</span>
+                                        <span class="text-xs text-slate-500">${event.tanggal.substring(0,7)}</span>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    }
+                },
+
+                adminsettings: {
+                    init() {
+                        document.getElementById('admin-agenda-host').value = App.state.agendaHost;
+                        document.getElementById('admin-agenda-address').value = App.state.agendaAddress;
+                    },
+                    saveWarta() {
+                        const title = document.getElementById('admin-warta-title').value;
+                        const desc = document.getElementById('admin-warta-desc').value;
+                        if(!title || !desc) return App.showToast("Warta wajib diisi lengkap!", false);
+
+                        App.state.warta.unshift({ id: Date.now(), title, desc });
+                        saveStateToStorage();
+                        App.showToast("Warta baru diposting!");
+                        document.getElementById('admin-warta-title').value = "";
+                        document.getElementById('admin-warta-desc').value = "";
+                    },
+                    deleteWarta(id) {
+                        App.state.warta = App.state.warta.filter(w => w.id !== id);
+                        saveStateToStorage();
+                        App.views.beranda.renderWarta();
+                        App.showToast("Pengumuman berhasil dihapus.");
+                    },
+                    updateAgenda() {
+                        const host = document.getElementById('admin-agenda-host').value;
+                        const address = document.getElementById('admin-agenda-address').value;
+                        if(!host || !address) return App.showToast("Data agenda tidak boleh kosong!", false);
+
+                        App.state.agendaHost = host;
+                        App.state.agendaAddress = address;
+                        saveStateToStorage();
+                        App.showToast("Detail agenda utama diperbarui!");
+                    }
+                }
+            },
+
+            // 3. SISTEM AUTHENTICATION (PIN ADMIN)
+            auth: {
+                validatePin() {
+                    const pin = document.getElementById('input-admin-pin').value;
+                    if (pin === "007") {
+                        App.state.isAdmin = true;
+                        App.modals.closePin();
+                        App.showToast("Sukses masuk sebagai Admin RT 007!");
+                        
+                        document.getElementById('admin-indicator').classList.remove('hidden');
+                        document.getElementById('nav-adminsettings').classList.remove('hidden');
+                        
+                        App.router.navigate('adminsettings');
+                    } else {
+                        App.showToast("PIN Rahasia Salah!", false);
+                    }
+                },
+                logout() {
+                    App.state.isAdmin = false;
+                    document.getElementById('admin-indicator').classList.add('hidden');
+                    document.getElementById('nav-adminsettings').classList.add('hidden');
+                    App.router.navigate('beranda');
+                    App.showToast("Keluar dari Mode Admin.");
+                }
+            },
+
+            // 4. KONTROL MODAL (WINDOW POP-UP)
+            modals: {
+                openPin() { document.getElementById('modal-pin').classList.remove('hidden'); },
+                closePin() { 
+                    document.getElementById('modal-pin').classList.add('hidden'); 
+                    document.getElementById('input-admin-pin').value = '';
+                },
+                openTransaction() {
+                    document.getElementById('form-tx-ledger').value = App.state.kasLedger;
+                    document.getElementById('form-tx-date').valueAsDate = new Date();
+                    document.getElementById('modal-transaction').classList.remove('hidden');
+                },
+                closeTransaction() { document.getElementById('modal-transaction').classList.add('hidden'); },
+                openMember() { document.getElementById('modal-member').classList.remove('hidden'); },
+                closeMember() { document.getElementById('modal-member').classList.add('hidden'); },
+                closeArisanSettlement() { document.getElementById('modal-arisan-settlement').classList.add('hidden'); }
+            },
+
+            // 5. PENYELARASAN TAMPILAN UMUM
+            renderCommonUI() {
+                // Update total saldo kas di Beranda jika ada elemen stats-nya
+                let sumRT = App.state.kasRT.reduce((sum, tx) => sum + (tx.type === "Masuk" ? tx.amount : -tx.amount), 0);
+                let sumMushola = App.state.kasMushola.reduce((sum, tx) => sum + (tx.type === "Masuk" ? tx.amount : -tx.amount), 0);
+                let sumKurban = App.state.kasKurban.reduce((sum, tx) => sum + (tx.type === "Masuk" ? tx.amount : -tx.amount), 0);
+
+                const elRT = document.getElementById('stats-kas-rt');
+                const elMushola = document.getElementById('stats-kas-mushola');
+                const elKurban = document.getElementById('stats-kas-kurban');
+
+                if (elRT) elRT.innerText = `Rp ${new Intl.NumberFormat('id-ID').format(sumRT)}`;
+                if (elMushola) elMushola.innerText = `Rp ${new Intl.NumberFormat('id-ID').format(sumMushola)}`;
+                if (elKurban) elKurban.innerText = `Rp ${new Intl.NumberFormat('id-ID').format(sumKurban)}`;
+                
+                const elCount = document.getElementById('header-member-count');
+                if (elCount) elCount.innerText = App.state.members.length;
+            },
+
+            showToast(message, isSuccess = true) {
+                const toast = document.getElementById('toast-message');
+                const icon = document.getElementById('toast-icon');
+                const text = document.getElementById('toast-text');
+
+                text.innerText = message;
+                if(isSuccess) {
+                    icon.className = "fa-solid fa-circle-check text-gold-400 text-sm animate-bounce";
+                    toast.classList.remove('border-red-500/40');
+                    toast.classList.add('border-gold-400/40');
+                } else {
+                    icon.className = "fa-solid fa-circle-exclamation text-red-500 text-sm animate-bounce";
+                    toast.classList.remove('border-gold-400/40');
+                    toast.classList.add('border-red-500/40');
+                }
+
+                toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+                setTimeout(() => {
+                    toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                }, 3000);
+            },
+
+            launchConfetti() {
+                const canvas = document.getElementById('confetti-canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                let particles = [];
+                const colors = ['#0c3e7b', '#cbb279', '#ffffff', '#10b981', '#f59e0b'];
+
+                for (let i = 0; i < 150; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height - canvas.height,
+                        r: Math.random() * 6 + 4,
+                        d: Math.random() * canvas.height,
+                        color: colors[Math.floor(Math.random() * colors.length)],
+                        tilt: Math.random() * 10 - 5,
+                        tiltAngleIncremental: Math.random() * 0.07 + 0.02,
+                        tiltAngle: 0
+                    });
+                }
+
+                function drawConfetti() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    let remaining = false;
+
+                    particles.forEach((p, idx) => {
+                        p.tiltAngle += p.tiltAngleIncremental;
+                        p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2;
+                        p.x += Math.sin(p.tiltAngle);
+                        p.tilt = Math.sin(p.tiltAngle - idx / 3) * 15;
+
+                        if (p.y <= canvas.height) {
+                            remaining = true;
+                        }
+
+                        ctx.beginPath();
+                        ctx.lineWidth = p.r;
+                        ctx.strokeStyle = p.color;
+                        ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
+                        ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
+                        ctx.stroke();
+                    });
+
+                    if (remaining) {
+                        requestAnimationFrame(drawConfetti);
+                    } else {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    }
+                }
+                drawConfetti();
+            }
+        };
+
+        // EVENT RUNNER PADA SAAT WINDOWS SELESAI LOADING
+        window.onload = function() {
+            if (isGoogleAppsScript) {
+                loadDataFromGoogleSheets();
+            } else {
+                document.getElementById('loading-overlay').classList.add('hidden');
+                initFallbackStorage();
+                App.router.navigate('beranda');
+            }
+        };
+
+        // MEMUAT DATA SECARA REALTIME DARI GOOGLE SHEETS VIA APPS SCRIPT
+        function loadDataFromGoogleSheets() {
+            document.getElementById('loading-text').innerText = "Membuat koneksi ke Google Sheets...";
+            
+            google.script.run.withSuccessHandler(function(members) {
+                App.state.members = members;
+                google.script.run.withSuccessHandler(function(events) {
+                    App.state.kalender = events;
+                    google.script.run.withSuccessHandler(function(yasinDb) {
+                        App.state.yasin = yasinDb;
+                        google.script.run.withSuccessHandler(function(tahlilDb) {
+                            App.state.tahlil = tahlilDb;
+                            
+                            // Ambil data Fallback untuk transaksi & warta
+                            App.state.kasRT = fallbackKasRT;
+                            App.state.kasMushola = fallbackKasMushola;
+                            App.state.kasKurban = fallbackKasKurban;
+                            App.state.warta = fallbackWarta;
+
+                            document.getElementById('loading-overlay').classList.add('opacity-0');
+                            setTimeout(() => { document.getElementById('loading-overlay').classList.add('hidden'); }, 500);
+
+                            App.router.navigate('beranda');
+                        }).getTahlilGuideDatabase();
+                    }).getQuranYasinDatabase();
+                }).getCalendarEventsGAS();
+            }).getAllMembers();
+        }
+
+        // PENYIMPANAN LOCAL STORAGE CADANGAN (PREVIEW MODE)
+        function initFallbackStorage() {
+            if(!localStorage.getItem('yasin_rt007_v4_members')) {
+                localStorage.setItem('yasin_rt007_v4_members', JSON.stringify(fallbackMembers));
+            }
+            if(!localStorage.getItem('yasin_rt007_v4_kasRT')) {
+                localStorage.setItem('yasin_rt007_v4_kasRT', JSON.stringify(fallbackKasRT));
+            }
+            if(!localStorage.getItem('yasin_rt007_v4_kasMushola')) {
+                localStorage.setItem('yasin_rt007_v4_kasMushola', JSON.stringify(fallbackKasMushola));
+            }
+            if(!localStorage.getItem('yasin_rt007_v4_kasKurban')) {
+                localStorage.setItem('yasin_rt007_v4_kasKurban', JSON.stringify(fallbackKasKurban));
+            }
+            if(!localStorage.getItem('yasin_rt007_v4_warta')) {
+                localStorage.setItem('yasin_rt007_v4_warta', JSON.stringify(fallbackWarta));
+            }
+            if(!localStorage.getItem('yasin_rt007_v4_kalender')) {
+                localStorage.setItem('yasin_rt007_v4_kalender', JSON.stringify(fallbackKalender));
+            }
+
+            App.state.members = JSON.parse(localStorage.getItem('yasin_rt007_v4_members'));
+            App.state.kasRT = JSON.parse(localStorage.getItem('yasin_rt007_v4_kasRT'));
+            App.state.kasMushola = JSON.parse(localStorage.getItem('yasin_rt007_v4_kasMushola'));
+            App.state.kasKurban = JSON.parse(localStorage.getItem('yasin_rt007_v4_kasKurban'));
+            App.state.warta = JSON.parse(localStorage.getItem('yasin_rt007_v4_warta'));
+            App.state.kalender = JSON.parse(localStorage.getItem('yasin_rt007_v4_kalender'));
+            App.state.yasin = fallbackYasin;
+            App.state.tahlil = fallbackTahlil;
+        }
+
+        function saveStateToStorage() {
+            if (!isGoogleAppsScript) {
+                localStorage.setItem('yasin_rt007_v4_members', JSON.stringify(App.state.members));
+                localStorage.setItem('yasin_rt007_v4_kasRT', JSON.stringify(App.state.kasRT));
+                localStorage.setItem('yasin_rt007_v4_kasMushola', JSON.stringify(App.state.kasMushola));
+                localStorage.setItem('yasin_rt007_v4_kasKurban', JSON.stringify(App.state.kasKurban));
+                localStorage.setItem('yasin_rt007_v4_warta', JSON.stringify(App.state.warta));
+                localStorage.setItem('yasin_rt007_v4_kalender', JSON.stringify(App.state.kalender));
+            }
+        }
+
+        function handleFooterClick() {
+            footerClicks++;
+            clearTimeout(footerTimer);
+            footerTimer = setTimeout(() => { footerClicks = 0; }, 2000);
+
+            if (footerClicks >= 5) {
+                footerClicks = 0;
+                App.modals.openPin();
+            } else {
+                App.showToast(`Ketuk ${5 - footerClicks} kali lagi untuk akses admin`, true);
+            }
+        }
+    </script>
+</body>
+</html>
