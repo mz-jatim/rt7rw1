@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0d6efd">
+  <meta name="description" content="Yasinan RT007 RW001 - Dsn. Yosowinangun, Ds. Jajag">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Yasinan RT007 RW001</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕌</text></svg>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="app-header">
+    <div class="header-top">
+      <div class="header-brand">
+        <span class="header-icon">🕌</span>
+        <div>
+          <h1>Yasinan RT007 RW001</h1>
+          <p class="header-subtitle">Dsn. Yosowinangun, Ds. Jajag</p>
+        </div>
+      </div>
+      <button class="btn-menu" id="btnMenu" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <div class="header-search">
+      <i class="fas fa-search"></i>
+      <input type="text" id="globalSearch" placeholder="Cari warga, kegiatan...">
+    </div>
+  </header>
+
+  <!-- ==================== SIDEBAR ==================== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span>🕌</span>
+      <h3>Yasinan RT007</h3>
+      <button class="btn-close-sidebar" id="btnCloseSidebar"><i class="fas fa-times"></i></button>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-page="dashboard">
+        <i class="fas fa-home"></i> <span>Dashboard</span>
+      </a>
+      <div class="nav-divider">IBADAH</div>
+      <a href="#" class="nav-item" data-page="yasin-tahlil">
+        <i class="fas fa-book-quran"></i> <span>Yasin & Tahlil</span>
+      </a>
+      <a href="#" class="nav-item" data-page="arisan">
+        <i class="fas fa-hand-holding-dollar"></i> <span>Arisan Yasinan</span>
+      </a>
+      <div class="nav-divider">KEUANGAN</div>
+      <a href="#" class="nav-item" data-page="kas-rt">
+        <i class="fas fa-wallet"></i> <span>Kas RT</span>
+      </a>
+      <a href="#" class="nav-item" data-page="kas-mushola">
+        <i class="fas fa-mosque"></i> <span>Kas Mushola</span>
+      </a>
+      <a href="#" class="nav-item" data-page="kas-kurban">
+        <i class="fas fa-cow"></i> <span>Kas Kurban</span>
+      </a>
+      <div class="nav-divider">MANAJEMEN</div>
+      <a href="#" class="nav-item" data-page="warga">
+        <i class="fas fa-users"></i> <span>Warga / Jamaah</span>
+      </a>
+      <a href="#" class="nav-item" data-page="admin">
+        <i class="fas fa-gear"></i> <span>Admin / CRUD</span>
+      </a>
+      <a href="#" class="nav-item" data-page="pengaturan">
+        <i class="fas fa-sliders"></i> <span>Pengaturan</span>
+      </a>
+    </nav>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="main-content" id="mainContent">
+
+    <!-- ===== DASHBOARD ===== -->
+    <section id="page-dashboard" class="page active">
+      <div class="page-header">
+        <h2><i class="fas fa-home"></i> Dashboard</h2>
+        <p class="page-subtitle">Selamat datang di Sistem Yasinan RT007</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card stat-primary">
+          <div class="stat-icon"><i class="fas fa-users"></i></div>
+          <div class="stat-info">
+            <span class="stat-value" id="stat-warga">0</span>
+            <span class="stat-label">Warga</span>
+          </div>
+        </div>
+        <div class="stat-card stat-success">
+          <div class="stat-icon"><i class="fas fa-book-quran"></i></div>
+          <div class="stat-info">
+            <span class="stat-value" id="stat-yasin">0</span>
+            <span class="stat-label">Yasin & Tahlil</span>
+          </div>
+        </div>
+        <div class="stat-card stat-warning">
+          <div class="stat-icon"><i class="fas fa-hand-holding-dollar"></i></div>
+          <div class="stat-info">
+            <span class="stat-value" id="stat-arisan">0</span>
+            <span class="stat-label">Arisan</span>
+          </div>
+        </div>
+        <div class="stat-card stat-info">
+          <div class="stat-icon"><i class="fas fa-money-bill-wave"></i></div>
+          <div class="stat-info">
+            <span class="stat-value" id="stat-saldo">Rp 0</span>
+            <span class="stat-label">Total Kas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jadwal Yasinan Terdekat -->
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-calendar-alt"></i> Jadwal Yasinan Terdekat</h3>
+        </div>
+        <div class="card-body" id="jadwal-terdekat">
+          <div class="loading"><i class="fas fa-spinner fa-spin"></i> Memuat...</div>
+        </div>
+      </div>
+
+      <!-- Saldo Kas -->
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-chart-pie"></i> Saldo Kas</h3>
+        </div>
+        <div class="card-body" id="saldo-kas">
+          <div class="loading"><i class="fas fa-spinner fa-spin"></i> Memuat...</div>
+        </div>
+      </div>
+
+      <!-- Kegiatan Terbaru -->
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-clock"></i> Kegiatan Terbaru</h3>
+        </div>
+        <div class="card-body" id="kegiatan-terbaru">
+          <div class="loading"><i class="fas fa-spinner fa-spin"></i> Memuat...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== YASIN & TAHLIL ===== -->
+    <section id="page-yasin-tahlil" class="page">
+      <div class="page-header">
+        <h2><i class="fas fa-book-quran"></i> Yasin & Tahlil</h2>
+        <p class="page-subtitle">Jadwal & riwayat kegiatan yasinan</p>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h3>Daftar Kegiatan</h3>
+          <button class="btn btn-primary btn-sm" onclick="openModal('yasin_tahlil')"><i class="fas fa-plus"></i> Tambah</button>
+        </div>
+        <div class="card-body">
+          <div id="list-yasin-tahlil" class="loading"><i class="fas fa-spinner fa-spin"></i> Memuat...</div>
+        </div>
+      </div>
+    </section>
+
+    ===== ARISAN YASINAN ===== -->
+    <section id="page-arisan" class="page">
+      <div class="page-header">
+        <h2><i class="fas fa-hand-holding-dollar"></i> Arisan Yasinan</h2>
+        <p class="page-subtitle">Data arisan warga RT007</p>
+      </div>
+      <div class="tabs">
+        <button class="tab active" data-tab="arisan-rt" onclick="switchTab(this, 'arisan-rt')">
+          <i class="fas fa-users"></i> Kas RT
+        </button>
+        <button class="tab" data-tab="arisan-mushola" onclick="switchTab(this, 'arisan-mushola')">
+          <i class="fas fa-mosque"></i> Kas Mushola
+        </button>
+        <button class="tab" data-tab="arisan-kurban" onclick="switchTab(this, 'arisan-kurban')">
+          <i class="fas fa-cow"></i> Kas Kurban
+        </button>
+      </div>
+
+      <div id="tab-arisan-rt" class="tab-content active">
+        <div class="card">
+          <div class="card-header">
+            <h3>Arisan Kas RT</h3>
+            <button class="btn btn-primary btn-sm" onclick="openModal('arisan_rt')"><i class="fas fa-plus"></i> Tambah</button>
+          </div>
+          <div class="card-body">
+            <div id="list-arisan-rt" class="loading"><i class="fas fa-spinner fa-spin"></i> Memuat...</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-arisan-mushola" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <h3>Arisan Kas Mushola</h3>
+            <button class="btn btn-primary btn-sm" onclick="openModal('arisan_mushola')"><i class="fas fa-plus"></i> Tambah</button>
+          </div>
+          <div class="card-body">
+            <div id="list-arisan-mushola" class="loading"><i class="fas fa-spinner fa-spin"></i> Memuat...</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-arisan-kurban" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <h3>Arisan Kas Kurban</h3>
+            <button class="btn btn-primary btn-sm" onclick="openModal('arisan_kurban')"><i class="fas fa-plus"></i> Tambah</button>
+          </div>
+          <div class="card-body">
+            <div id="list-arisan-kurban" class="loading"><i class="fas fa-spinner fa-spin"></i> Memuat...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== KAS RT ===== -->
+    <section id="page-kas-rt" class="page">
+      <div class="page-header">
+        <h2><i class="fas fa-wallet"></i> Kas RT</h2>
+        <p class="page-subtitle">Pencatatan keuangan kas RT</p>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h3>Riwayat Transaksi</h3>
+          <button class="btn btn-primary btn-sm" onclick="openModal('kas_rt')"><i class="fas fa-plus"></i> Tambah</button>
+        </div>
+        <div class="card-body">
+          <div id="list-kas-rt" class="loading"><i class="fas fa-spinner fa-spin"></i> Memuat...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== KAS MUSHOLA ===== -->
+    <section id="page-kas-mushola" class="page">
+      <div class="page-header">
+        <h2><i class="fas fa-mosque"></i> Kas Mushola</h2>
+        <p class="page-subtitle">Pencatatan keuangan kas mushola</p>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h3>Riwayat Transaksi</h3>
+          <button class="btn btn-primary btn-sm" onclick="openModal('kas_mushola')"><i class="fas fa-plus"></i> Tambah</button>
+        </div>
+        <div class="card-body">
+          <div id="list-kas-mushola" class="loading"><i class="fas fa-spinner fa-spin"></i> Memuat...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== KAS KURBAN ===== -->
+    <section id="page-kas-kurban" class="page">
+      <div class="page-header">
+        <h2><i class="fas fa-cow"></i> Kas Kurban</h2>
+        <p class="page-subtitle">Pencatatan tabungan kurban</p>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h3>Riwayat Transaksi</h3>
+          <button class="btn btn-primary btn-sm" onclick="openModal('kas_kurban')"><i class="fas fa-plus"></i> Tambah</button>
+        </div>
+        <div class="card-body">
+          <div id="list-kas-kurban" class="loading"><i class="fas fa-spinner fa-spin"></i> Memuat...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WARGA / JAMAAH ===== -->
+    <section id="page-warga" class="page">
+      <div class="page-header">
+        <h2><i class="fas fa-users"></i> Warga / Jamaah</h2>
+        <p class="page-subtitle">Data warga RT007 RW001</p>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h3>Daftar Warga</h3>
+          <button class="btn btn-primary btn-sm" onclick="openModal('warga')"><i class="fas fa-plus"></i> Tambah</button>
+        </div>
+        <div class="card-body">
+          <div id="list-warga" class="loading"><i class="fas fa-spinner fa-spin"></i> Memuat...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ADMIN / CRUD ===== -->
+    <section id="page-admin" class="page">
+      <div class="page-header">
+        <h2><i class="fas fa-gear"></i> Admin Panel</h2>
+        <p class="page-subtitle">Kelola data master & CRUD</p>
+      </div>
+
+      <div class="admin-grid">
+        <div class="admin-card" onclick="navigateTo('warga')">
+          <i class="fas fa-users"></i>
+          <h4>Warga</h4>
+          <p>Kelola data warga</p>
+        </div>
+        <div class="admin-card" onclick="navigateTo('yasin-tahlil')">
+          <i class="fas fa-book-quran"></i>
+          <h4>Yasin & Tahlil</h4>
+          <p>Kelola kegiatan yasinan</p>
+        </div>
+        <div class="admin-card" onclick="navigateTo('arisan')">
+          <i class="fas fa-hand-holding-dollar"></i>
+          <h4>Arisan</h4>
+          <p>Kelola arisan yasinan</p>
+        </div>
+        <div class="admin-card" onclick="navigateTo('kas-rt')">
+          <i class="fas fa-wallet"></i>
+          <h4>Kas RT</h4>
+          <p>Kelola kas RT</p>
+        </div>
+        <div class="admin-card" onclick="navigateTo('kas-mushola')">
+          <i class="fas fa-mosque"></i>
+          <h4>Kas Mushola</h4>
+          <p>Kelola kas mushola</p>
+        </div>
+        <div class="admin-card" onclick="navigateTo('kas-kurban')">
+          <i class="fas fa-cow"></i>
+          <h4>Kas Kurban</h4>
+          <p>Kelola kas kurban</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 20px;">
+        <div class="card-header">
+          <h3><i class="fas fa-database"></i> Database Info</h3>
+        </div>
+        <div class="card-body">
+          <div id="db-info" class="loading"><i class="fas fa-spinner fa-spin"></i> Memuat...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PENGATURAN ===== -->
+    <section id="page-pengaturan" class="page">
+      <div class="page-header">
+        <h2><i class="fas fa-sliders"></i> Pengaturan</h2>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>Info Aplikasi</h3></div>
+        <div class="card-body">
+          <div class="setting-item">
+            <span>Versi</span><span class="setting-value">1.0.0</span>
+          </div>
+          <div class="setting-item">
+            <span>PWA Status</span><span class="setting-value" id="pwa-status">-</span>
+          </div>
+          <button class="btn btn-primary" onclick="installPWA()" id="btnInstall" style="display:none;">
+            <i class="fas fa-download"></i> Install Aplikasi
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== BOTTOM NAV ==================== -->
+  <nav class="bottom-nav">
+    <a href="#" class="bottom-nav-item active" data-page="dashboard">
+      <i class="fas fa-home"></i>
+      <span>Beranda</span>
+    </a>
+    <a href="#" class="bottom-nav-item" data-page="yasin-tahlil">
+      <i class="fas fa-book-quran"></i>
+      <span>Yasin</span>
+    </a>
+    <a href="#" class="bottom-nav-item" data-page="arisan">
+      <i class="fas fa-hand-holding-dollar"></i>
+      <span>Arisan</span>
+    </a>
+    <a href="#" class="bottom-nav-item" data-page="warga">
+      <i class="fas fa-users"></i>
+      <span>Warga</span>
+    </a>
+    <a href="#" class="bottom-nav-item" data-page="admin">
+      <i class="fas fa-gear"></i>
+      <span>Admin</span>
+    </a>
+  </nav>
+
+  <!-- ==================== MODAL ==================== -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <h3 id="modalTitle">Tambah Data</h3>
+        <button class="btn-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Dynamic form -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal()">Batal</button>
+        <button class="btn btn-primary" id="btnSave" onclick="saveData()">
+          <i class="fas fa-save"></i> Simpan
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TOAST ==================== -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ==================== LOADING OVERLAY ==================== -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner">
+      <i class="fas fa-spinner fa-spin"></i>
+      <p>Memuat data...</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
